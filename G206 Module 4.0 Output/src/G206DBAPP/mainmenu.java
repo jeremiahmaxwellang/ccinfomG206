@@ -3,9 +3,7 @@ package G206DBAPP;
 import java.util.Scanner;
 
 public class mainmenu {
-	public mainmenu() {
-//		menu();
-	}
+	public mainmenu() {}
 	
 	public int menu() {
 		int menuchoice = 0;
@@ -37,11 +35,7 @@ public class mainmenu {
 			while(prodmanmenu.menu() != 0) {}
 		}
 		
-//		
-//		else {
-//			System.out.println("INVALID INPUT");
-//		}
-		
+
 		return menuchoice;
 	}
 	
