@@ -11,22 +11,37 @@ public class product_management_menu {
 		int menuchoice = 0;
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("  ");
-		System.out.println("  ");
-		System.out.println("=======================================================");
-		System.out.println("    Product Management Menu							   ");
-		System.out.println("-------------------------------------------------------");
-		System.out.println("[1] Create a new Product\r\n"
-						 + "[2] Update a record of a Product\r\n"
-						 + "[3] Delete a record of a Product\r\n"
-						 + "[4] Discontinue a Product\r\n"
-						 + "[5] View a Product Record\r\n"
-						 + "[0] Exit Product Management\r\n");
-		System.out.println("=======================================================");
-		
-		System.out.println("Enter Selected Function: ");
-		
-		menuchoice = Integer.parseInt(scan.nextLine());
+		int validInput = 0;
+		while(validInput == 0) {
+			System.out.println("  ");
+			System.out.println("  ");
+			System.out.println("=======================================================");
+			System.out.println("    Product Management Menu							   ");
+			System.out.println("-------------------------------------------------------");
+			System.out.println("[1] Create a new Product\r\n"
+							 + "[2] Update a record of a Product\r\n"
+							 + "[3] Delete a record of a Product\r\n"
+							 + "[4] Discontinue a Product\r\n"
+							 + "[5] View a Product Record\r\n"
+							 + "[0] Exit Product Management\r\n");
+			System.out.println("=======================================================");
+			
+			System.out.println("Enter Selected Function: ");
+			
+			try {
+				menuchoice = Integer.parseInt(scan.nextLine());
+				
+				if(menuchoice < 0 || menuchoice > 5) 
+					System.out.println("INVALID INPUT.");
+				
+				else validInput = 1;
+			} 
+			catch (NumberFormatException e) {
+				System.out.println("INVALID INPUT.");
+	        
+			}
+		}
+
 		
 		if (menuchoice == 1) {
 			createproductmenu();
@@ -187,7 +202,7 @@ public class product_management_menu {
 	        try {
 	        	p.setMSRP(Float.parseFloat(input));
 
-	            System.out.println("MSRP is: " + p.getBuyPrice());
+	            System.out.println("MSRP is: " + p.getMSRP());
 	            validInput = 1;
 	            
 	        } catch (NumberFormatException e) {
