@@ -58,18 +58,12 @@ public class product_management_menu {
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println ("Enter product information");
-		System.out.println ("Product Code        : ");  p.setProductCode(scan.nextLine());
-		System.out.println ("Product Name        : ");  p.setProductName(scan.nextLine());
-		System.out.println ("Product Line        : ");  p.setProductLine(scan.nextLine());
-		System.out.println ("Product Scale       : ");  p.setProductScale(scan.nextLine());
-		System.out.println ("Product Description : ");  p.setProductDescription(scan.nextLine());
-		System.out.println ("Product Vendor      : ");  p.setProductVendor(scan.nextLine());
-		System.out.println ("Initial quantity    : ");  p.setQuantityInStock(Integer.parseInt(scan.nextLine()));
-		System.out.println ("Buy Price           : ");  p.setBuyPrice(Float.parseFloat(scan.nextLine()));
-		System.out.println ("MSRP                : ");  p.setMSRP(Float.parseFloat(scan.nextLine()));
-		
+		inputProductDetails(p);
+
 		p.addproduct();
 	}
+	
+
 	
 	public void updateproductmenu() {
 		product_management p = new product_management();
@@ -84,16 +78,8 @@ public class product_management_menu {
 			showcurrentproductinfo(p);
 
 			System.out.println ("Enter updated product information");
-			System.out.println ("-------------------------------------------------------------------");
-			System.out.println ("Product Code        : ");  p.setProductCode(scan.nextLine());
-			System.out.println ("Product Name        : ");  p.setProductName(scan.nextLine());
-			System.out.println ("Product Line        : ");  p.setProductLine(scan.nextLine());
-			System.out.println ("Product Scale       : ");  p.setProductScale(scan.nextLine());
-			System.out.println ("Product Description : ");  p.setProductDescription(scan.nextLine());
-			System.out.println ("Product Vendor      : ");  p.setProductVendor(scan.nextLine());
-			System.out.println ("Initial quantity    : ");  p.setQuantityInStock(Integer.parseInt(scan.nextLine()));
-			System.out.println ("Buy Price           : ");  p.setBuyPrice(Float.parseFloat(scan.nextLine()));
-			System.out.println ("MSRP                : ");  p.setMSRP(Float.parseFloat(scan.nextLine()));
+			
+			inputProductDetails(p);
 			
 			p.updateproduct();
 		}
@@ -140,5 +126,79 @@ public class product_management_menu {
 		System.out.println ("Initial quantity    : " + p.getQuantityInStock());
 		System.out.println ("Buy Price           : " + p.getBuyPrice());
 		System.out.println ("MSRP                : " + p.getMSRP());
+	}
+	
+	public void inputProductDetails(product_management p) {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println ("-------------------------------------------------------------------");
+		System.out.println ("Product Code        : ");  p.setProductCode(scan.nextLine());
+		System.out.println ("Product Name        : ");  p.setProductName(scan.nextLine());
+		System.out.println ("Product Line        : ");  p.setProductLine(scan.nextLine());
+		System.out.println ("Product Scale       : ");  p.setProductScale(scan.nextLine());
+		System.out.println ("Product Description : ");  p.setProductDescription(scan.nextLine());
+		System.out.println ("Product Vendor      : ");  p.setProductVendor(scan.nextLine());
+		System.out.println ("Initial quantity    : ");  
+		
+		int validInput = 0;
+		
+		while(validInput == 0) {
+	        String input = scan.nextLine();
+
+	        try {
+	        	p.setQuantityInStock(Integer.parseInt(input));
+
+	            System.out.println("Quantity is: " + p.getQuantityInStock());
+	            validInput = 1;
+	            
+	        } catch (NumberFormatException e) {
+	            System.out.println("Invalid quantity. Please enter a valid integer:");
+	            
+	        }
+		}
+
+        
+		  
+		
+		System.out.println ("Buy Price           : ");
+		validInput = 0;
+		
+		while(validInput == 0) {
+			
+	        String input = scan.nextLine();
+
+	        try {
+	        	p.setBuyPrice(Float.parseFloat(input));
+
+	            System.out.println("Buy Price is: " + p.getBuyPrice());
+	            validInput = 1;
+	            
+	        } catch (NumberFormatException e) {
+	            System.out.println("Invalid Buy Price. Please enter a valid float:");
+	            
+	        }
+		}
+
+		
+		System.out.println ("MSRP                : "); 
+		
+		validInput = 0;
+		
+		while(validInput == 0) {
+			
+	        String input = scan.nextLine();
+
+	        try {
+	        	p.setMSRP(Float.parseFloat(input));
+
+	            System.out.println("MSRP is: " + p.getBuyPrice());
+	            validInput = 1;
+	            
+	        } catch (NumberFormatException e) {
+	            System.out.println("Invalid MSRP. Please enter a valid float:");
+	            
+	        }
+		}
+		
 	}
 }
