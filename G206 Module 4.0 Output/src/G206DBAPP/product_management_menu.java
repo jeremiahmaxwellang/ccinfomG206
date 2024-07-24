@@ -72,6 +72,8 @@ public class product_management_menu {
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println ("Enter product information");
+		System.out.println ("-------------------------------------------------------------------");
+		System.out.println ("Product Code        : ");  p.setProductCode(scan.nextLine());
 		inputProductDetails(p);
 
 		p.addproduct();
@@ -89,9 +91,11 @@ public class product_management_menu {
 		if (p.viewproduct() == 0) {
 			System.out.println("That product does not exist on the records");
 		} else {
+			
 			showcurrentproductinfo(p);
 
-			System.out.println ("Enter updated product information");
+			System.out.println ("\nEnter updated product information");
+			System.out.println ("-------------------------------------------------------------------");
 			
 			inputProductDetails(p);
 			
@@ -126,6 +130,7 @@ public class product_management_menu {
 	}
 	
 	public void showcurrentproductinfo(product_management p) {
+		System.out.println ("-------------------------------------------------------------------");
 		System.out.println ("Current Product information");
 		System.out.println ("-------------------------------------------------------------------");
 		System.out.println ("Product Code        : " + p.getProductCode());
@@ -143,8 +148,7 @@ public class product_management_menu {
 	public void inputProductDetails(product_management p) {
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println ("-------------------------------------------------------------------");
-		System.out.println ("Product Code        : ");  p.setProductCode(scan.nextLine());
+
 		System.out.println ("Product Name        : ");  p.setProductName(scan.nextLine());
 		System.out.println ("Product Line        : ");  p.setProductLine(scan.nextLine());
 		System.out.println ("Product Scale       : ");  p.setProductScale(scan.nextLine());

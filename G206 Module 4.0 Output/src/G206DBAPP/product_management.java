@@ -67,13 +67,14 @@ public class product_management {
 			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
 			System.out.println("Connection to DB successful");
 			
-			PreparedStatement pstmt = conn.prepareStatement("UPDATE products SET productName=?, productLine=?, productScale=?, productDescription=?, productVendor=?, quantityInStock=?, buyPrice=?, MSRP=? WHERE productCode=?");
+			PreparedStatement pstmt = conn.prepareStatement("UPDATE products SET productName=?, productLine=?, productScale=?, productVendor=?, productDescription=?, quantityInStock=?, buyPrice=?, MSRP=? WHERE productCode=?");
 			pstmt.setString(9, productCode);
 			pstmt.setString(1, productName);
 			pstmt.setString(2, productLine);
 			pstmt.setString(3, productScale);
-			pstmt.setString(4, productDescription);
-			pstmt.setString(5, productVendor);
+			
+			pstmt.setString(4, productVendor);
+			pstmt.setString(5, productDescription);
 			pstmt.setInt   (6, quantityInStock);
 			
 			BigDecimal roundedBuyPrice = new BigDecimal(buyPrice).setScale(2, RoundingMode.HALF_UP);
