@@ -1,7 +1,8 @@
 package G206DBAPP;
 
 import java.sql.*;
-
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class product_management {
 	private String  productCode;
@@ -41,8 +42,12 @@ public class product_management {
 			pstmt.setString(5, productDescription);
 			pstmt.setString(6, productVendor);
 			pstmt.setInt   (7, quantityInStock);
-			pstmt.setDouble(8, buyPrice);
-			pstmt.setDouble(9, MSRP);
+			
+			BigDecimal roundedBuyPrice = new BigDecimal(buyPrice).setScale(2, RoundingMode.HALF_UP);
+			pstmt.setBigDecimal(8, roundedBuyPrice);
+			
+			BigDecimal roundedMSRP = new BigDecimal(MSRP).setScale(2, RoundingMode.HALF_UP);
+			pstmt.setBigDecimal(9, roundedMSRP);
 			
 			pstmt.executeUpdate();
 			
@@ -69,8 +74,12 @@ public class product_management {
 			pstmt.setString(4, productDescription);
 			pstmt.setString(5, productVendor);
 			pstmt.setInt   (6, quantityInStock);
-			pstmt.setFloat (7, buyPrice);
-			pstmt.setFloat (8, MSRP);
+			
+			BigDecimal roundedBuyPrice = new BigDecimal(buyPrice).setScale(2, RoundingMode.HALF_UP);
+			pstmt.setBigDecimal(7, roundedBuyPrice);
+
+			BigDecimal roundedMSRP = new BigDecimal(MSRP).setScale(2, RoundingMode.HALF_UP);
+			pstmt.setBigDecimal(8, roundedMSRP);
 			
 			System.out.println("SQL Statement Prepared");
 			pstmt.executeUpdate();

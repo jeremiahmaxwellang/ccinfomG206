@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class order_transaction_menu {
 
+	public order_transaction_menu() {}
+	
 	public int menu() {
 		int menuchoice = 0;
 		Scanner scan = new Scanner(System.in);

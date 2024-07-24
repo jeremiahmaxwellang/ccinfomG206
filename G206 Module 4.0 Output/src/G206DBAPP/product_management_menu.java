@@ -159,7 +159,7 @@ public class product_management_menu {
 	        try {
 	        	p.setQuantityInStock(Integer.parseInt(input));
 
-	            System.out.println("Quantity is: " + p.getQuantityInStock());
+	            System.out.printf("\nQuantity is: %d\n", p.getQuantityInStock());
 	            validInput = 1;
 	            
 	        } catch (NumberFormatException e) {
@@ -181,7 +181,7 @@ public class product_management_menu {
 	        try {
 	        	p.setBuyPrice(Float.parseFloat(input));
 
-	            System.out.println("Buy Price is: " + p.getBuyPrice());
+	        	System.out.printf("\nBuy Price is: %.2f\n", p.getBuyPrice());
 	            validInput = 1;
 	            
 	        } catch (NumberFormatException e) {
@@ -202,7 +202,7 @@ public class product_management_menu {
 	        try {
 	        	p.setMSRP(Float.parseFloat(input));
 
-	            System.out.println("MSRP is: " + p.getMSRP());
+	        	System.out.printf("\nMSRP is: %.2f\n", p.getMSRP());
 	            validInput = 1;
 	            
 	        } catch (NumberFormatException e) {
