@@ -132,8 +132,9 @@ public class product_management_menu {
 		System.out.println ("Product Name        : " + p.getProductName());
 		System.out.println ("Product Line        : " + p.getProductLine());
 		System.out.println ("Product Scale       : " + p.getProductScale());
-		System.out.println ("Product Description : " + p.getProductDescription());
+		
 		System.out.println ("Product Vendor      : " + p.getProductVendor());
+		System.out.println ("Product Description : " + p.getProductDescription());
 		System.out.println ("Initial quantity    : " + p.getQuantityInStock());
 		System.out.println ("Buy Price           : " + p.getBuyPrice());
 		System.out.println ("MSRP                : " + p.getMSRP());
@@ -147,8 +148,9 @@ public class product_management_menu {
 		System.out.println ("Product Name        : ");  p.setProductName(scan.nextLine());
 		System.out.println ("Product Line        : ");  p.setProductLine(scan.nextLine());
 		System.out.println ("Product Scale       : ");  p.setProductScale(scan.nextLine());
-		System.out.println ("Product Description : ");  p.setProductDescription(scan.nextLine());
+		
 		System.out.println ("Product Vendor      : ");  p.setProductVendor(scan.nextLine());
+		System.out.println ("Product Description : ");  p.setProductDescription(scan.nextLine());
 		System.out.println ("Initial quantity    : ");  
 		
 		int validInput = 0;
@@ -159,7 +161,7 @@ public class product_management_menu {
 	        try {
 	        	p.setQuantityInStock(Integer.parseInt(input));
 
-	            System.out.printf("\nQuantity is: %d\n", p.getQuantityInStock());
+	            System.out.printf("Quantity is: %d\n\n", p.getQuantityInStock());
 	            validInput = 1;
 	            
 	        } catch (NumberFormatException e) {
@@ -181,7 +183,7 @@ public class product_management_menu {
 	        try {
 	        	p.setBuyPrice(Float.parseFloat(input));
 
-	        	System.out.printf("\nBuy Price is: %.2f\n", p.getBuyPrice());
+	        	System.out.printf("Buy Price is: %.2f\n\n", p.getBuyPrice());
 	            validInput = 1;
 	            
 	        } catch (NumberFormatException e) {
@@ -202,7 +204,7 @@ public class product_management_menu {
 	        try {
 	        	p.setMSRP(Float.parseFloat(input));
 
-	        	System.out.printf("\nMSRP is: %.2f\n", p.getMSRP());
+	        	System.out.printf("MSRP is: %.2f\n\n", p.getMSRP());
 	            validInput = 1;
 	            
 	        } catch (NumberFormatException e) {

@@ -39,8 +39,9 @@ public class product_management {
 			pstmt.setString(2, productName);
 			pstmt.setString(3, productLine);
 			pstmt.setString(4, productScale);
-			pstmt.setString(5, productDescription);
-			pstmt.setString(6, productVendor);
+			
+			pstmt.setString(5, productVendor);
+			pstmt.setString(6, productDescription);
 			pstmt.setInt   (7, quantityInStock);
 			
 			BigDecimal roundedBuyPrice = new BigDecimal(buyPrice).setScale(2, RoundingMode.HALF_UP);
