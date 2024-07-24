@@ -1,6 +1,5 @@
 package G206DBAPP;
 
-//import java.io.*;
 import java.util.Scanner;
 
 public class product_management_menu {
@@ -102,16 +101,13 @@ public class product_management_menu {
 		System.out.println ("Enter product information");
 		System.out.println ("Product Code        : ");  
 		p.setProductCode(scan.nextLine());
-
-		p.viewproduct();
 		
-//		if(p.viewproduct() == 1) {
+		if(p.viewproduct() != 0) 
 			showcurrentproductinfo(p);
-//		}
 		
-//		else {
-//			System.out.println("That product does not exist on the records");
-//		}
+		else 
+			System.out.println("That product does not exist on the records");
+		
 	}
 	
 	public void showcurrentproductinfo(product_management p) {

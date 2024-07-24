@@ -71,6 +71,7 @@ public class product_management {
 			pstmt.setInt   (6, quantityInStock);
 			pstmt.setFloat (7, buyPrice);
 			pstmt.setFloat (8, MSRP);
+			
 			System.out.println("SQL Statement Prepared");
 			pstmt.executeUpdate();
 			System.out.println("Record was updated");
@@ -107,6 +108,7 @@ public class product_management {
 	}
 	
 	public int viewproduct() {
+		int recordcount = 0;
 		try {
 			Connection conn;
 			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
@@ -115,9 +117,12 @@ public class product_management {
 			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM products WHERE productCode=?");
 			pstmt.setString(1, productCode);
 			
+			System.out.println("SQL Statement Prepared");
+			
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				recordcount++;
 				productName = rs.getString("productName");
 				productLine = rs.getString("productLine");
 				productScale = rs.getString("productScale");
@@ -126,14 +131,13 @@ public class product_management {
 				quantityInStock = rs.getInt("quantityInStock");
 				buyPrice = rs.getFloat("buyPrice");
 				MSRP = rs.getFloat("MSRP");
+				System.out.println("Record was Retrieved");
 			}
 
 			
-			pstmt.executeUpdate();
-			
 			pstmt.close();
 			conn.close();
-			return 1;
+			return recordcount;
 		}
 		
 		catch (Exception e) {
