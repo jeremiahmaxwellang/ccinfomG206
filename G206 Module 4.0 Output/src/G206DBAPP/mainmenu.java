@@ -51,6 +51,12 @@ public class mainmenu {
 			while(prodmanmenu.menu() != 0) {}
 		}
 		
+		//Order Processing
+		else if (menuchoice == 5) {
+			order_transaction_menu ordermenu = new order_transaction_menu();
+			while(ordermenu.menu() != 0) {}
+		}
+		
 
 		return menuchoice;
 	}
