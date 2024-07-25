@@ -1,8 +1,6 @@
 package G206DBAPP;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Timestamp;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class order_transaction {
 	//orders
@@ -14,13 +12,20 @@ public class order_transaction {
 	private String comments;
 	private int customerNumber;
 	
-	//orderdetails
-	private String productCode;
-	private int quantityOrdered;
-	private float priceEach;
-	private short orderLineNumber;
+	private ArrayList<orderdetails> orderdetails_list;
+
 	
-	public order_transaction(){}
+	public order_transaction(){
+		orderNumber = 0;
+		orderDate = null;
+		requiredDate = null;
+		shippedDate = null;
+		status = "";
+		comments = "";
+		customerNumber = 0;
+		orderdetails_list = new ArrayList<orderdetails>();
+		
+	}
 	
 	public void createorder() {
 		try {
@@ -28,21 +33,26 @@ public class order_transaction {
 			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
 			System.out.println("Connection to DB successful");
 			
-			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO orders VALUES (?, ?, ?, ?, ?, ?)");
+			//orders
+			
+			//Generate next orderNumber
+			getMaxOrderNumber();
+			orderNumber++;
+			
+			//Get date today
+			getCurrentDatetime();
+			
+			String insertOrder = "INSERT INTO orders (`orderNumber`, `orderDate`, `requiredDate`, `status`, `customerNumber`) VALUES (?, ?, ?, ?, ?)";
+			PreparedStatement pstmt = conn.prepareStatement(insertOrder);
+
 			pstmt.setInt(1, orderNumber);
-			pstmt.setTimestamp(2, requiredDate);
-			pstmt.setTimestamp(3, shippedDate);
+			pstmt.setTimestamp(2, orderDate);
+			pstmt.setTimestamp(3, requiredDate);
+			
+			status = "In Process";
 			pstmt.setString(4, status);
-			pstmt.setString(5, comments);
-			pstmt.setInt(6, customerNumber);
 			
-			pstmt.executeUpdate();
-			
-			pstmt = conn.prepareStatement("INSERT INTO orderdetails VALUES (?, ?, ?, ?)");
-			pstmt.setString(1, productCode);
-			pstmt.setInt(2, quantityOrdered);
-			pstmt.setFloat(3, priceEach);
-			pstmt.setShort(4, orderLineNumber);
+			pstmt.setInt(5, customerNumber);
 			
 			pstmt.executeUpdate();
 			
@@ -54,4 +64,173 @@ public class order_transaction {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public void createorderdetail(orderdetails or) {
+		try {
+			Connection conn;
+			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			System.out.println("Connection to DB successful");
+
+			//orderdetails
+			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO orderdetails VALUES (?, ?, ?, ?, ?)");
+			pstmt.setInt   (1, orderNumber);
+			pstmt.setString(2, or.getProductCode());
+			pstmt.setInt   (3, or.getQuantityOrdered());
+			pstmt.setFloat (4, or.getPriceEach());
+			pstmt.setShort (5, or.getOrderLineNumber());
+			
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			conn.close();
+		}
+		
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	 public int getMaxOrderNumber() {
+			int recordcount = 0;
+			try {
+				Connection conn;
+				conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+				System.out.println("Connection to DB successful");
+				
+				PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(orderNumber) FROM orders");
+				System.out.println("SQL Statement Prepared MAX(orderNumber)");
+				
+				ResultSet rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					recordcount++;
+					orderNumber = rs.getInt("MAX(orderNumber)");
+
+					System.out.println("Highest Order Number: " + orderNumber + "\n\n");
+				}
+
+				
+				pstmt.close();
+				conn.close();
+				return recordcount;
+			}
+			
+			catch (Exception e) {
+				System.out.println(e.getMessage());
+				return 0;
+			}
+		}
+	 
+
+
+    
+	 public int getCurrentDatetime() {
+			int recordcount = 0;
+			try {
+				Connection conn;
+				conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+				System.out.println("Connection to DB successful");
+				
+				PreparedStatement pstmt = conn.prepareStatement("SELECT CURRENT_TIMESTAMP");
+				System.out.println("SQL Statement Prepared (Current Timestamp)");
+				
+				ResultSet rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					recordcount++;
+					orderDate = rs.getTimestamp("CURRENT_TIMESTAMP");
+
+					System.out.println("Current DATETIME: " + orderDate + "\n\n");
+				}
+
+				
+				pstmt.close();
+				conn.close();
+				return recordcount;
+			}
+			
+			catch (Exception e) {
+				System.out.println(e.getMessage());
+				return 0;
+			}
+		}
+    
+
+    // Getter and Setter for orderNumber
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    // Getter and Setter for orderDate
+    public Timestamp getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Timestamp orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    // Getter and Setter for requiredDate
+    public Timestamp getRequiredDate() {
+        return requiredDate;
+    }
+
+    public void setRequiredDate(Timestamp requiredDate) {
+        this.requiredDate = requiredDate;
+    }
+
+    // Getter and Setter for shippedDate
+    public Timestamp getShippedDate() {
+        return shippedDate;
+    }
+
+    public void setShippedDate(Timestamp shippedDate) {
+        this.shippedDate = shippedDate;
+    }
+
+    // Getter and Setter for status
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    // Getter and Setter for comments
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    // Getter and Setter for customerNumber
+    public int getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public void setCustomerNumber(int customerNumber) {
+        this.customerNumber = customerNumber;
+    }
+
+    // Getter for orderdetails_list
+    public ArrayList<orderdetails> getOrderDetailsList() {
+		 return orderdetails_list;
+    }
+
+    public void setOrderDetails(String productCode, int quantityOrdered, float priceEach, short orderLineNumber) {
+        orderdetails od = new orderdetails(productCode, quantityOrdered, priceEach, orderLineNumber);
+        
+        this.orderdetails_list.add(od);
+    }
+    
+
+
+   
 }
