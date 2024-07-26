@@ -4,14 +4,14 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class EmployeeManager {
-//	private static final String URL = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales";
-//    private static final String USER = "CCINFOM_G206";
-//    private static final String PASSWORD = "DLSU1234";
+	private static final String URL = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales";
+    private static final String USER = "CCINFOM_G206";
+    private static final String PASSWORD = "DLSU1234";
     
 	//local test connection
-	private static final String URL = "jdbc:mysql://localhost:3306/dbsales";
-    private static final String USER = "root";
-    private static final String PASSWORD = "CCINFOMS12";
+//	private static final String URL = "jdbc:mysql://localhost:3306/dbsales";
+//    private static final String USER = "root";
+//    private static final String PASSWORD = "CCINFOMS12";
 
 //    "jdbc:mysql://localhost:3306/dbsales?useTimezone=true&serverTimezone=UTC&user=root&password=CCINFOMS12"
 	public int menu() {
