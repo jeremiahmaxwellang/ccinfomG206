@@ -18,7 +18,8 @@ public class order_transaction {
 	private int customerNumber;
 	
 	private ArrayList<orderdetails> orderdetails_list;
-
+	
+	private String connectionString = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234";
 	
 	public order_transaction(){
 		orderNumber = 0;
@@ -35,7 +36,7 @@ public class order_transaction {
 	public void createorder() {
 		try {
 			Connection conn;
-			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			conn = DriverManager.getConnection(connectionString);
 			System.out.println("Connection to DB successful\n");
 			
 			//orders
@@ -73,7 +74,7 @@ public class order_transaction {
 	public void createorderdetail(orderdetails or) {
 		try {
 			Connection conn;
-			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			conn = DriverManager.getConnection(connectionString);
 			System.out.println("Connected; Adding product " + or.getProductCode() + " to order...\n");
 			
 
@@ -99,7 +100,7 @@ public class order_transaction {
 	public int updateOrder() {
 		try {
 			Connection conn;
-			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			conn = DriverManager.getConnection(connectionString);
 			System.out.println("Connection to DB successful");
 			
 			PreparedStatement pstmt = conn.prepareStatement("UPDATE orders SET orderDate=?, requiredDate=?, shippedDate=?, status=?, comments=?, customerNumber=? WHERE orderNumber=?");
@@ -127,7 +128,7 @@ public class order_transaction {
 	public void updateOrderedProduct(orderdetails od, String newProductCode) {
 		try {
 			Connection conn;
-			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			conn = DriverManager.getConnection(connectionString);
 			System.out.println("Connection to DB successful");
 			PreparedStatement pstmt = conn.prepareStatement("UPDATE orderdetails SET productCode=?, quantityOrdered=? WHERE orderNumber=? AND productCode=?");
 
@@ -152,7 +153,7 @@ public class order_transaction {
 	public void deleteOrderedProduct(orderdetails or) {
 		try {
 			Connection conn;
-			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			conn = DriverManager.getConnection(connectionString);
 			System.out.println("Connection to DB successful");
 			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM orderdetails WHERE orderNumber=? AND productCode=?");
 			pstmt.setInt(1, or.getOrderNumber());
@@ -175,7 +176,7 @@ public class order_transaction {
 		int recordcount = 0;
 		try {
 			Connection conn;
-			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			conn = DriverManager.getConnection(connectionString);
 			System.out.println("Connection to DB successful");
 			
 			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM orders WHERE orderNumber=?");
@@ -213,7 +214,7 @@ public class order_transaction {
 			int recordcount = 0;
 			try {
 				Connection conn;
-				conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+				conn = DriverManager.getConnection(connectionString);
 				System.out.println("Connected; Generating Order...");
 				
 				PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(orderNumber) FROM orders");
@@ -248,7 +249,7 @@ public class order_transaction {
 			int recordcount = 0;
 			try {
 				Connection conn;
-				conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+				conn = DriverManager.getConnection(connectionString);
 				System.out.println("Connection to DB successful");
 				
 				PreparedStatement pstmt = conn.prepareStatement("SELECT CURRENT_TIMESTAMP");
@@ -280,7 +281,7 @@ public class order_transaction {
 		int recordcount = 0;
 		try {
 			Connection conn;
-			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			conn = DriverManager.getConnection(connectionString);
 			System.out.println("Connection to DB successful");
 			
 			PreparedStatement pstmt = conn.prepareStatement("SELECT od.orderNumber, od.productCode, od.quantityOrdered, p.productName  FROM orderdetails od JOIN products p ON p.productCode = od.productCode WHERE od.orderNumber=?");

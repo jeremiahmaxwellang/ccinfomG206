@@ -19,6 +19,8 @@ public class product_management {
 	private float	buyPrice;
 	private float	MSRP;
 	
+	private String connectionString = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234";
+	
 	
 	public product_management() {
 		productCode 		= "";
@@ -35,7 +37,7 @@ public class product_management {
 	public void addproduct() {
 		try {
 			Connection conn;
-			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			conn = DriverManager.getConnection(connectionString);
 			System.out.println("Connection to DB successful");
 			
 			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO products VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -68,7 +70,7 @@ public class product_management {
 	public int updateproduct() {
 		try {
 			Connection conn;
-			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			conn = DriverManager.getConnection(connectionString);
 			System.out.println("Connection to DB successful");
 			
 			PreparedStatement pstmt = conn.prepareStatement("UPDATE products SET productName=?, productLine=?, productScale=?, productVendor=?, productDescription=?, quantityInStock=?, buyPrice=?, MSRP=? WHERE productCode=?");
@@ -102,7 +104,7 @@ public class product_management {
 	public void deleteproduct() {
 		try {
 			Connection conn;
-			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			conn = DriverManager.getConnection(connectionString);
 			System.out.println("Connection to DB successful");
 			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM products WHERE productCode=?");
 			pstmt.setString(1, productCode);
@@ -126,7 +128,7 @@ public class product_management {
 		int recordcount = 0;
 		try {
 			Connection conn;
-			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			conn = DriverManager.getConnection(connectionString);
 			System.out.println("Connection to DB successful");
 			
 			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM products WHERE productCode=?");

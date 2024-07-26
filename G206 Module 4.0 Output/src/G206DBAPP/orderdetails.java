@@ -35,42 +35,6 @@ public class orderdetails {
 	}
     
 
-//	public int viewOrderDetails() {
-//		int recordcount = 0;
-//		try {
-//			Connection conn;
-//			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
-//			System.out.println("Connection to DB successful");
-//			
-//			PreparedStatement pstmt = conn.prepareStatement("SELECT FROM orderDetails WHERE orderNumber=? AND productCode=?");
-//			pstmt.setInt(1, orderNumber);
-//			pstmt.setString(2, productCode);
-//			
-//			System.out.println("SQL Statement Prepared");
-//			
-//			ResultSet rs = pstmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				recordcount++;
-//				quantityOrdered = rs.getInt("quantityOrdered");
-//				priceEach = rs.getFloat("priceEach");
-//				orderLineNumber = rs.getShort("orderLineNumber");
-////				System.out.println("Record was Retrieved");
-//			}
-//
-//			
-//			pstmt.close();
-//			conn.close();
-//			return recordcount;
-//		}
-//		
-//		catch (Exception e) {
-//			System.out.println(e.getMessage());
-//			return 0;
-//		}
-//	}
-	
-
 
 	// Getter and Setter for orderNumber
     public int getOrderNumber() {
