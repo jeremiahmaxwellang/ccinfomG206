@@ -4,16 +4,23 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class EmployeeManager {
-	private static final String URL = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales";
-    private static final String USER = "CCINFOM_G206";
-    private static final String PASSWORD = "DLSU1234";
+//	private static final String URL = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales";
+//    private static final String USER = "CCINFOM_G206";
+//    private static final String PASSWORD = "DLSU1234";
+    
+	//local test connection
+	private static final String URL = "jdbc:mysql://localhost:3306/dbsales";
+    private static final String USER = "root";
+    private static final String PASSWORD = "CCINFOMS12";
 
-    public void employeeManagementMenu() {
-        Scanner scanner = new Scanner(System.in);
-        Scanner scan = new Scanner(System.in);
-        int choice;
-
-        do {
+//    "jdbc:mysql://localhost:3306/dbsales?useTimezone=true&serverTimezone=UTC&user=root&password=CCINFOMS12"
+	public int menu() {
+		int menuchoice = 0;
+		Scanner scan = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
+		
+		int validInput = 0;
+		while(validInput == 0) {
 			System.out.println("=======================================================");
 			System.out.println("    Employee Management Menu							   ");
 			System.out.println("-------------------------------------------------------");
@@ -24,40 +31,56 @@ public class EmployeeManager {
             System.out.println("5. View Employee details");
             System.out.println("6. Exit");
             System.out.print("Enter your choice: \n");
-            choice = scanner.nextInt();
+			
+			try {
+				menuchoice = Integer.parseInt(scan.nextLine());
+				
+				if(menuchoice < 1 || menuchoice > 6) 
+					System.out.println("INVALID INPUT.");
+				
+				else validInput = 1;
+			} 
+			catch (NumberFormatException e) {
+				System.out.println("INVALID INPUT.");
+	        
+			}
+		}
 
-            try {
-                switch (choice) {
-                    case 1:
-                        createEmployee(scanner, scan);
-                        break;
-                    case 2:
-                        updateEmployee(scanner, scan);
-                        break;
-                    case 3:
-                        deleteEmployee(scanner);
-                        break;
-                    case 4:
-                        resignEmployee(scanner);
-                        break;
-                    case 5:
-                        viewEmployee(scanner);
-                        break;
-                    case 6:
-                        System.out.println("Exiting...");
-//                        return 6;
-                        break;
-                    default:
-                        System.out.println("Invalid choice! Please try again.");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-//                return 0;
-            }
-        } while (choice != 6);
+		try {
+			if (menuchoice == 1) {
+				createEmployee(scanner, scan);
+			} 
+			
+			else if (menuchoice == 2) {			
+				updateEmployee(scanner, scan);
+			} 
+			
+			else if (menuchoice == 3) {			
+				deleteEmployee(scanner);
+			} 
+			
+			else if (menuchoice == 4) {			
+				resignEmployee(scanner);
+			} 
+			
+			else if (menuchoice == 5) {			
+				viewEmployee(scanner);
+			} 
+			
+			else if (menuchoice == 6) {			
+				System.out.println("Exiting...");
+			} 
+		}
+		
+		catch (SQLException e) {
+            e.printStackTrace();
+        }
+		
+		
 
-        scanner.close();
-    }
+		return menuchoice;
+	}
+	
 
     private static void createEmployee(Scanner scanner, Scanner scan) throws SQLException {
         System.out.print("Enter employee number: ");
@@ -113,7 +136,7 @@ public class EmployeeManager {
         }
     }
 
-    private static void updateEmployee(Scanner scanner, Scanner scan) throws SQLException {
+    public void updateEmployee(Scanner scanner, Scanner scan) throws SQLException {
         System.out.print("Enter employee number to update: ");
         int employeeNumber = scanner.nextInt();
         System.out.print("Enter new last name: ");
@@ -151,7 +174,7 @@ public class EmployeeManager {
         }
     }
 
-    private static void deleteEmployee(Scanner scanner) throws SQLException {
+    public void deleteEmployee(Scanner scanner) throws SQLException {
         System.out.print("Enter employee number to delete: ");
         int employeeNumber = scanner.nextInt();
 
@@ -168,7 +191,7 @@ public class EmployeeManager {
         }
     }
 
-    private static void resignEmployee(Scanner scanner) throws SQLException {
+    public void resignEmployee(Scanner scanner) throws SQLException {
         System.out.print("Enter employee number to resign: ");
         int employeeNumber = scanner.nextInt();
 
@@ -195,7 +218,7 @@ public class EmployeeManager {
         }
     }
 
-    private static void viewEmployee(Scanner scanner) throws SQLException {
+    public void viewEmployee(Scanner scanner) throws SQLException {
         System.out.print("Enter employee number to view: ");
         int employeeNumber = scanner.nextInt();
 

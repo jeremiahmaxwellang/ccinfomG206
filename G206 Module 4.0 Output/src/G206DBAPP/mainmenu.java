@@ -25,7 +25,7 @@ public class mainmenu {
 			System.out.println("[1] Product Management\r\n"
 							 + "[2] Customer Management\r\n"
 							 + "[3] Employee Management\r\n"
-							 + "[4] Office Management\r\n\n"
+							 + "[4] Office Management (Unavailable)\r\n\n"
 							 
 							 + "[5] Order Processing\r\n"
 							 + "[6] Payment Processing\r\n"
@@ -45,7 +45,7 @@ public class mainmenu {
 				else validInput = 1;
 			} 
 			catch (Exception e) {
-				System.out.println("INVALID INPUT.");
+				System.out.println("Exception occurred: INVALID INPUT.");
 	        
 			}
 		}
@@ -59,7 +59,7 @@ public class mainmenu {
 //		Employee Management
 		if (menuchoice == 3) {
 			EmployeeManager e = new EmployeeManager();
-			e.employeeManagementMenu();
+			while(e.menu() != 6) {}
 		}
 		
 //		Order Processing
@@ -68,7 +68,7 @@ public class mainmenu {
 			while(ordermenu.menu() != 0) {}
 		}
 		
-		//Order Processing
+//		Report 1
 		else if (menuchoice == 7) {
 			SalesReportGenerator report1 = new SalesReportGenerator();
 			report1.generateSalesReport1();
