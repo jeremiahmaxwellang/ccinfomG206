@@ -21,9 +21,9 @@ public class product_management {
 	private float	MSRP;
 	private ArrayList<String> discontinuedProducts = new ArrayList<String>();
 	
-//	private String connectionString = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234";
+	private String connectionString = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234";
 	
-	private String connectionString = "jdbc:mysql://localhost:3306/dbsales?useTimezone=true&serverTimezone=UTC&user=root&password=CCINFOMS12";
+//	private String connectionString = "jdbc:mysql://localhost:3306/dbsales?useTimezone=true&serverTimezone=UTC&user=root&password=CCINFOMS12";
 	
 	
 	public product_management() {
