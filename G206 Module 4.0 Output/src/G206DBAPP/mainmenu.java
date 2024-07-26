@@ -30,7 +30,7 @@ public class mainmenu {
 							 + "[5] Order Processing\r\n"
 							 + "[6] Payment Processing\r\n"
 							 + "[7] Report Generation - Sales Report 1\r\n"
-							 + "[8] Report Generation - Sales Report 2\r\n"
+							 + "[8] Report Generation - Sales Report 2 (Unavailable)\r\n"
 							 + "[0] Exit App\r\n");
 			System.out.println("=======================================================");
 			
@@ -44,25 +44,37 @@ public class mainmenu {
 				
 				else validInput = 1;
 			} 
-			catch (NumberFormatException e) {
+			catch (Exception e) {
 				System.out.println("INVALID INPUT.");
 	        
 			}
 		}
 		
-		
+//		Product Management
 		if (menuchoice == 1) {
 			product_management_menu prodmanmenu = new product_management_menu(p);
 			while(prodmanmenu.menu() != 0) {}
 		}
 		
-		//Order Processing
+//		Employee Management
+		if (menuchoice == 3) {
+			EmployeeManager e = new EmployeeManager();
+			e.employeeManagementMenu();
+		}
+		
+//		Order Processing
 		else if (menuchoice == 5) {
 			order_transaction_menu ordermenu = new order_transaction_menu();
 			while(ordermenu.menu() != 0) {}
 		}
 		
+		//Order Processing
+		else if (menuchoice == 7) {
+			SalesReportGenerator report1 = new SalesReportGenerator();
+			report1.generateSalesReport1();
+		}
 
+//		scan.close();
 		return menuchoice;
 	}
 	

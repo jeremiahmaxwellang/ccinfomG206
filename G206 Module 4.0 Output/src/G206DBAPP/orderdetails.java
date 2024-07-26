@@ -4,10 +4,6 @@ package G206DBAPP;
  * GROUP MEMBER 01: JEREMIAH MAXWELL ANG
  */
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class orderdetails {
 	private int orderNumber;

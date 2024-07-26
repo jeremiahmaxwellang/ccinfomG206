@@ -21,7 +21,9 @@ public class product_management {
 	private float	MSRP;
 	private ArrayList<String> discontinuedProducts = new ArrayList<String>();
 	
-	private String connectionString = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234";
+//	private String connectionString = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234";
+	
+	private String connectionString = "jdbc:mysql://localhost:3306/dbsales?useTimezone=true&serverTimezone=UTC&user=root&password=CCINFOMS12";
 	
 	
 	public product_management() {
@@ -152,6 +154,43 @@ public class product_management {
 				buyPrice = rs.getFloat("buyPrice");
 				MSRP = rs.getFloat("MSRP");
 				System.out.println("Record of the product " + productCode + " exists\n");
+			}
+
+			
+			pstmt.close();
+			conn.close();
+			return recordcount;
+		}
+		
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			return 0;
+		}
+	}
+	
+	public int viewOrdersWithProduct(int year) {
+		int recordcount = 0;
+		try {
+			Connection conn;
+			conn = DriverManager.getConnection(connectionString);
+			System.out.println("Connection to DB successful");
+			
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM orderdetails od JOIN orders o ON o.orderNumber = od.orderNumber WHERE od.productCode=? AND EXTRACT(YEAR FROM o.orderDate) = ?");
+			pstmt.setString(1, productCode);
+			pstmt.setInt(2, year);
+			
+			System.out.println("SQL Statement Prepared");
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			//Copy record from db
+			while(rs.next()) {
+				recordcount++;
+				System.out.println("[ o.orderNumber " + rs.getInt("o.orderNumber") + " ]");
+				System.out.println("o.orderDate        : " + rs.getTimestamp("o.orderDate"));
+				System.out.println("od.productCode     : " + rs.getString("od.productCode"));
+				System.out.println("od.quantityOrdered : " + rs.getInt("od.quantityOrdered") + " \n");
+
 			}
 
 			

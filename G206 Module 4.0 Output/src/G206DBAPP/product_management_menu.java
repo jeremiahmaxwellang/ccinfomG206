@@ -40,7 +40,7 @@ public class product_management_menu {
 			try {
 				menuchoice = Integer.parseInt(scan.nextLine());
 				
-				if(menuchoice < 0 || menuchoice > 5) 
+				if(menuchoice < 0 || menuchoice > 6) 
 					System.out.println("INVALID INPUT.");
 				
 				else validInput = 1;
@@ -175,8 +175,11 @@ public class product_management_menu {
 		System.out.println ("Product Code        : ");  
 		p.setProductCode(scan.nextLine());
 		
-		if(p.viewproduct() != 0) 
+		if(p.viewproduct() != 0) {
 			showcurrentproductinfo();
+			showListOfOrders();
+		}
+			
 		
 		else 
 			System.out.println("That product does not exist on the records");
@@ -283,5 +286,17 @@ public class product_management_menu {
 		}
 		
 
+	}
+	
+	public void showListOfOrders() {
+		int year = 0;
+		
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println ("[View a list of orders made involving the product given a specific year]");
+		System.out.println ("Enter year    : ");  
+		year = Integer.parseInt(scan.nextLine());
+		
+		p.viewOrdersWithProduct(year);
 	}
 }

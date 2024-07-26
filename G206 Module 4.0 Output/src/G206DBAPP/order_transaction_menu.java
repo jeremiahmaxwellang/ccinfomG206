@@ -84,6 +84,11 @@ public class order_transaction_menu {
 			o.createorderdetail(o.getOrderDetailsList().get(i));
 			
 		}
+		
+		System.out.println ("-------------------------------------------------------------------");
+		System.out.println ("Current Ordered Products");
+		System.out.println ("-------------------------------------------------------------------");
+		o.viewMultipleOrderDetails();
 	}
 	
 	public void updateOrderMenu() {
@@ -330,21 +335,27 @@ public class order_transaction_menu {
 		}
 			
 //		INPUT REQUIRED DATE
-		validInput = 0;
-		while(validInput == 0)	{
-			System.out.println ("When do you require your order to be shipped?        : ");  
-			System.out.println ("Use this format: YYYY-MM-DD HH:MM:SS.S");
-			System.out.print(">> ");
-			String requiredDateInput = scan.nextLine();
-			
-			try {
-				o.setRequiredDate(Timestamp.valueOf(requiredDateInput));
-				
-				validInput = 1;
-			}
-			catch(Exception e) {
-				System.out.println("INPUT A VALID REQUIRED DATE\n");
-			}
+		System.out.println("\n");
+		System.out.println ("Required date            : ");
+        System.out.print("Enter year (e.g., 2024): ");
+        String year = scan.nextLine();
+        
+        System.out.print("\nEnter month (1-12): ");
+        String month = scan.nextLine();
+        
+        System.out.print("\nEnter day: ");
+        String day = scan.nextLine();
+
+        String requiredDateInput = year + "-" + month + "-" + day + " 0:0:0.0";
+		System.out.println(requiredDateInput);
+
+		
+		try {
+			o.setRequiredDate(Timestamp.valueOf(requiredDateInput));
+
+		}
+		catch(Exception e) {
+			System.out.println("Required date invalid, order transaction canceled\n");
 		}
 
 }
@@ -422,25 +433,49 @@ public class order_transaction_menu {
 //		DATETIME format: 2024-07-25 21:20:25.0
 //						 YYYY-MM-DD HH:MM:SS.S
 		
-		System.out.println ("Updated order date           : ");
-		System.out.println ("Use this format: YYYY-MM-DD HH:MM:SS.S");
-		System.out.println ("< You may press [ENTER] to skip >");
-		System.out.print(">> ");
-		orderDateInput = scan.nextLine();
+		System.out.println ("Updated ordered date           : ");
+        System.out.print("Enter year (e.g., 2024): ");
+        String year = scan.nextLine();
+        
+        System.out.print("\nEnter month (1-12): ");
+        String month = scan.nextLine();
+        
+        System.out.print("\nEnter day: ");
+        String day = scan.nextLine();
+
+		orderDateInput = year + "-" + month + "-" + day + " 0:0:0.0";
+		System.out.println(orderDateInput);
+		
 		
 		System.out.println("\n");
 		System.out.println ("Updated required date           : ");
-		System.out.println ("Use this format: YYYY-MM-DD HH:MM:SS.S");
-		System.out.println ("< You may press [ENTER] to skip >");
-		System.out.print(">> ");
-		requiredDateInput = scan.nextLine();
+        System.out.print("Enter year (e.g., 2024): ");
+        year = scan.nextLine();
+        
+        System.out.print("\nEnter month (1-12): ");
+        month = scan.nextLine();
+        
+        System.out.print("\nEnter day: ");
+        day = scan.nextLine();
+
+        requiredDateInput = year + "-" + month + "-" + day + " 0:0:0.0";
+		System.out.println(requiredDateInput);
+		
 		
 		System.out.println("\n");
 		System.out.println ("Updated shipped date            : ");
-		System.out.println ("Use this format: YYYY-MM-DD HH:MM:SS.S");
-		System.out.println ("< You may press [ENTER] to skip >");
-		System.out.print(">> ");
-		shippedDateInput = scan.nextLine();
+        System.out.print("Enter year (e.g., 2024): ");
+        year = scan.nextLine();
+        
+        System.out.print("\nEnter month (1-12): ");
+        month = scan.nextLine();
+        
+        System.out.print("\nEnter day: ");
+        day = scan.nextLine();
+
+        shippedDateInput = year + "-" + month + "-" + day + " 0:0:0.0";
+		System.out.println(shippedDateInput);
+
 		
 		try {
 			o.setOrderDate(Timestamp.valueOf(orderDateInput));
