@@ -148,6 +148,7 @@ public class order_transaction_menu {
 		System.out.println ("Order Number              : ");
 		
 		try {
+//			Get order number and check if valid
         	orderNumber = Integer.parseInt(scan.nextLine());
         	
         	System.out.println ("Product Code to Delete    : ");
@@ -158,7 +159,7 @@ public class order_transaction_menu {
     		
     		o.deleteOrderedProduct(od);
         		
-        		
+//        	Show all products ordered
     		System.out.println ("-------------------------------------------------------------------");
     		System.out.println ("Current Order Details");
     		System.out.println ("-------------------------------------------------------------------");
