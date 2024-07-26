@@ -1,6 +1,8 @@
 package G206DBAPP;
 
+import java.sql.Timestamp;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class order_transaction_menu {
 
@@ -104,6 +106,7 @@ public class order_transaction_menu {
 					//ask for new Order fields
 					System.out.println ("Enter updated order information");
 					System.out.println ("-------------------------------------------------------------------");
+					inputOrder(o);
 					
 				}
 				
@@ -232,7 +235,7 @@ public class order_transaction_menu {
 //        	==========Prompt user to continue order=========
         	int choice = -1;
         	while(choice == -1) {
-        		choice = continueOrderingPrompt();
+        		choice = chooseOption("Do you wish to order another product?");
         	}
 
         	continueOrdering = choice;
@@ -245,11 +248,11 @@ public class order_transaction_menu {
 
 
 //	==========Prompt user to continue order=========
-	public int continueOrderingPrompt() {
+	public int chooseOption(String question) {
 	
 			Scanner scan = new Scanner(System.in);
 			
-			System.out.println("Do you wish to order another product?");
+			System.out.println(question);
 			System.out.println("[ 0 - No ]\n[ 1 - Yes ]");
 			
 			int choice = 0;
@@ -288,13 +291,164 @@ public class order_transaction_menu {
 
 	            System.out.printf("You are customer # %d\n\n", o.getCustomerNumber());
 	            
+	            
 	            validInput = 1;
+//	            return 1;
 	            
 	        } catch (NumberFormatException e) {
 	            System.out.println("Invalid customer number. Please enter a valid integer:");
+//	            return 0;
 	            
 	        }
+	        
+//	        return 1;
 		}
+	}
+	
+
+	
+	public void inputOrder(order_transaction o) {
+		Scanner scan = new Scanner(System.in);
+
+		int validInput = 0;
+		String orderDateInput = "";
+		String requiredDateInput = "";
+		String shippedDateInput = "";
+		
+//		Update dates
+//		DATETIME format: 2024-07-25 21:20:25.0
+//						 YYYY-MM-DD HH:MM:SS.S
+		
+		System.out.println ("Updated order date           : ");
+		System.out.println ("Use this format: YYYY-MM-DD HH:MM:SS.S");
+		System.out.println ("< You may press [ENTER] to skip >");
+		System.out.print(">> ");
+		orderDateInput = scan.nextLine();
+		
+		System.out.println("\n");
+		System.out.println ("Updated required date           : ");
+		System.out.println ("Use this format: YYYY-MM-DD HH:MM:SS.S");
+		System.out.println ("< You may press [ENTER] to skip >");
+		System.out.print(">> ");
+		requiredDateInput = scan.nextLine();
+		
+		System.out.println("\n");
+		System.out.println ("Updated shipped date            : ");
+		System.out.println ("Use this format: YYYY-MM-DD HH:MM:SS.S");
+		System.out.println ("< You may press [ENTER] to skip >");
+		System.out.print(">> ");
+		shippedDateInput = scan.nextLine();
+		
+		try {
+			o.setOrderDate(Timestamp.valueOf(orderDateInput));
+
+		}
+		catch(Exception e) {
+			System.out.println("Order date not updated\n");
+		}
+		
+		try {
+			o.setRequiredDate(Timestamp.valueOf(requiredDateInput));
+		}
+		catch(Exception e) {
+			System.out.println("Required date not updated\n");
+		}
+		
+		try {
+			o.setShippedDate(Timestamp.valueOf(shippedDateInput));
+		}
+		catch(Exception e) {
+			System.out.println("Shipped date not updated\n");
+		}
+		
+		System.out.println ("New order date        : " + o.getOrderDate());
+		System.out.println ("New required date     : " + o.getRequiredDate());
+		System.out.println ("New shipped date      : " + o.getShippedDate() + "\n");
+
+//		Update Order Status
+		int choice = -1;
+		while(choice == -1) {
+			choice = chooseOption("Do you wish Update order status?");
+		}
+		
+		if(choice == 1) {
+			System.out.println ("Update status            : ");
+			statusMenu(o);
+		}
+		
+//		Update comments
+		choice = -1;
+		while(choice == -1) {
+			choice = chooseOption("Add any comments?");
+		}
+		
+		if(choice == 1) {
+			System.out.println ("Enter new comments           : ");
+			o.setComments(scan.nextLine());
+		}
+		
+//		Update customer num
+		inputCustomerNumber(o);
+		
+}
+	
+	public int statusMenu(order_transaction o) {
+		int menuchoice = 0;
+		Scanner scan = new Scanner(System.in);
+		
+		ArrayList<String> statusList = new ArrayList<String>();
+		statusList.add("");
+		statusList.add("In Process"); statusList.add("Shipped ");    statusList.add("Cancelled");  
+		statusList.add("On Hold");    statusList.add("Disputed");    statusList.add("Resolved");
+		
+		int validInput = 0;
+		while(validInput == 0) {
+			System.out.println("Current Order " + o.getOrderNumber() + " status: " + o.getStatus());
+			System.out.println("Choose new status:  ");
+			System.out.println("[1] In Process          [4] On Hold\r\n"
+							 + "[2] Shipped             [5] Disputed\r\n"
+							 + "[3] Cancelled           [6] Resolved\r\n\n");
+			System.out.println("=======================================================");
+			
+			System.out.println("Enter Selected Status: ");
+			
+			try {
+				menuchoice = Integer.parseInt(scan.nextLine());
+				
+				if(menuchoice < 1 || menuchoice > 7) 
+					System.out.println("INVALID INPUT.");
+				
+				else {
+					o.setStatus(statusList.get(menuchoice));
+					System.out.println("New order status:   " + o.getStatus() + "\n");
+					validInput = 1;
+				}
+			} 
+			catch (NumberFormatException e) {
+				System.out.println("INVALID INPUT.");
+	        
+			}
+		}
+
+		
+		if (menuchoice == 1) {
+			createOrderMenu();
+		} 
+		
+		else if (menuchoice == 2) {			
+			updateOrderMenu();
+		} 
+		
+		else if (menuchoice == 3) {			
+		
+		} 
+		
+		else if (menuchoice == 4) {			
+			deleteOrderedProductMenu();
+		} 
+		
+
+		return menuchoice;
 	}
 	
 	public void showCurrentOrder(order_transaction o) {
