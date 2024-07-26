@@ -142,6 +142,7 @@ public class order_transaction_menu {
 //		5. Delete
 		
 		order_transaction o = new order_transaction();
+		orderdetails od;
 		int orderNumber = 0;
 		String productCode = "";
 		
@@ -150,23 +151,31 @@ public class order_transaction_menu {
 		System.out.println ("Enter order information");
 		System.out.println ("-------------------------------------------------------------------");
 		System.out.println ("Order Number              : ");
-		
+
 		try {
 //			Get order number and check if valid
         	orderNumber = Integer.parseInt(scan.nextLine());
         	
-        	System.out.println ("Product Code to Delete    : ");
-        	productCode = scan.nextLine();
+        	o.setOrderNumber(orderNumber);
         	
-        	//add product checking
-    		orderdetails od = new orderdetails(orderNumber, productCode);
-    		
-    		o.deleteOrderedProduct(od);
-        		
-//        	Show all products ordered
-    		System.out.println ("-------------------------------------------------------------------");
-    		System.out.println ("Current Order Details");
-    		System.out.println ("-------------------------------------------------------------------");
+        	if(o.viewOrder() != 0) {
+        		o.viewMultipleOrderDetails();
+            	System.out.println ("\n\nProduct Code to Delete    : ");
+            	productCode = scan.nextLine();
+            	
+        		od = new orderdetails(orderNumber, productCode);
+        		System.out.println ("Deleting record...");
+        		o.deleteOrderedProduct(od);
+            		
+//            	Show all products ordered
+        		System.out.println ("-------------------------------------------------------------------");
+        		System.out.println ("Current Ordered Products");
+        		System.out.println ("-------------------------------------------------------------------");
+        		o.viewMultipleOrderDetails();
+        	}
+        	else System.out.println("Invalid Order Number\n\n");
+        	
+
             
         } catch (NumberFormatException e) {
             System.out.println("Order Number must be AN INTEGER\n\n");
@@ -254,13 +263,17 @@ public class order_transaction_menu {
         	continueOrdering = choice;
 		}
 			
+//		INPUT REQUIRED DATE
 		validInput = 0;
 		while(validInput == 0)	{
 			System.out.println ("When do you require your order to be shipped?        : ");  
+			System.out.println ("Use this format: YYYY-MM-DD HH:MM:SS.S");
+			System.out.print(">> ");
 			String requiredDateInput = scan.nextLine();
 			
 			try {
 				o.setRequiredDate(Timestamp.valueOf(requiredDateInput));
+				
 				validInput = 1;
 			}
 			catch(Exception e) {

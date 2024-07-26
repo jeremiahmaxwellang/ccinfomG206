@@ -123,13 +123,13 @@ public class order_transaction {
 			return 0;
 		}
 	}
-	
-	public void deleteOrderedProduct(orderdetails or) {
+
+	public void updateOrderedProduct(orderdetails or) {
 		try {
 			Connection conn;
 			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
 			System.out.println("Connection to DB successful");
-			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM orderDetails WHERE orderNumber=? AND productCode=?");
+			PreparedStatement pstmt = conn.prepareStatement("UPDATE orderdetails SET productCode=?, quantityOrdered=?, productScale=?, productVendor=?, productDescription=?, quantityInStock=?, buyPrice=?, MSRP=? WHERE productCode=?");
 			pstmt.setInt(1, or.getOrderNumber());
 			pstmt.setString(2, or.getProductCode());
 			System.out.println("SQL Statement Prepared");
@@ -140,6 +140,28 @@ public class order_transaction {
 			conn.close();
 
 		} catch (Exception e) {
+			System.out.println("Could not delete, product is not part of order.");
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void deleteOrderedProduct(orderdetails or) {
+		try {
+			Connection conn;
+			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			System.out.println("Connection to DB successful");
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM orderdetails WHERE orderNumber=? AND productCode=?");
+			pstmt.setInt(1, or.getOrderNumber());
+			pstmt.setString(2, or.getProductCode());
+			System.out.println("SQL Statement Prepared");
+			
+			pstmt.executeUpdate();
+			System.out.println("Record was deleted");
+			pstmt.close();
+			conn.close();
+
+		} catch (Exception e) {
+			System.out.println("Could not delete, product is not part of order.");
 			System.out.println(e.getMessage());
 		}
 	}
@@ -250,6 +272,45 @@ public class order_transaction {
 		}
     
 
+	public int viewMultipleOrderDetails() {
+		int recordcount = 0;
+		try {
+			Connection conn;
+			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			System.out.println("Connection to DB successful");
+			
+			PreparedStatement pstmt = conn.prepareStatement("SELECT od.orderNumber, od.productCode, od.quantityOrdered, p.productName  FROM orderdetails od JOIN products p ON p.productCode = od.productCode WHERE od.orderNumber=?");
+			
+			pstmt.setInt(1, orderNumber);
+//			pstmt.setString(2, productCode);
+			
+			System.out.println("SQL Statement Prepared, getting records...");
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+
+			
+			while(rs.next()) {
+				recordcount++;
+				System.out.println   ("\norderNumber       : " + rs.getString(1) 
+									+ "\nproductCode       : " + rs.getString(2) 
+									+ "\nquantityOrdered   : " + rs.getString(3) 
+									+ "\nproductName       : " + rs.getString(4) + "\n\n");
+				
+			}
+
+			
+			pstmt.close();
+			conn.close();
+			return recordcount;
+		}
+		
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			return 0;
+		}
+	}
+	
     // Getter and Setter for orderNumber
     public int getOrderNumber() {
         return orderNumber;
