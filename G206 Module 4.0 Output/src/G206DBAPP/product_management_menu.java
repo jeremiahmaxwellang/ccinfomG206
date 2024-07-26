@@ -7,8 +7,10 @@ package G206DBAPP;
 import java.util.Scanner;
 
 public class product_management_menu {
-	public product_management_menu() {
-		
+	public product_management p;
+	
+	public product_management_menu(product_management p) {
+		this.p = p;
 	}
 	
 	public int menu() {
@@ -25,8 +27,11 @@ public class product_management_menu {
 			System.out.println("[1] Create a new Product\r\n"
 							 + "[2] Update a record of a Product\r\n"
 							 + "[3] Delete a record of a Product\r\n"
+							 
 							 + "[4] Discontinue a Product\r\n"
-							 + "[5] View a Product Record\r\n"
+							 + "[5] View discontinued products list\r\n"
+							 
+							 + "[6] View a Product Record\r\n"
 							 + "[0] Exit Product Management\r\n");
 			System.out.println("=======================================================");
 			
@@ -60,36 +65,37 @@ public class product_management_menu {
 		} 
 		
 		else if (menuchoice == 4) {			
-			//discontinue product
+			discontinueproductmenu();
 		} 
 		
 		else if (menuchoice == 5) {
-			viewproductmenu();
+			showDiscontinuedProducts();
 		}
 		
+		else if (menuchoice == 6) {
+			viewproductmenu();
+		}
 
 		return menuchoice;
 	}
 	
 	public void createproductmenu() {
-		product_management p = new product_management();
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println ("Enter product information");
 		System.out.println ("-------------------------------------------------------------------");
 		System.out.println ("Product Code        : ");  p.setProductCode(scan.nextLine());
-		inputProductDetails(p);
+		inputProductDetails();
 
 		p.addproduct();
 		
 		if(p.viewproduct() != 0)
-			showcurrentproductinfo(p);
+			showcurrentproductinfo();
 	}
 	
 
 	
 	public void updateproductmenu() {
-		product_management p = new product_management();
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println ("Enter product information");
@@ -97,35 +103,72 @@ public class product_management_menu {
 
 		if (p.viewproduct() == 0) {
 			System.out.println("That product does not exist on the records");
-		} else {
-			
-			showcurrentproductinfo(p);
+		} 
+		
+		//If product exists
+		else if(p.getDiscontinuedProducts().contains(p.getProductCode())) 
+			System.out.println ("ERROR: Product is discontinued and cannot be updated."); 
+
+		
+		else {
+			showcurrentproductinfo();
 
 			System.out.println ("\nEnter updated product information");
 			System.out.println ("-------------------------------------------------------------------");
 			
-			inputProductDetails(p);
+			inputProductDetails();
 			
 			p.updateproduct();
 			
 			//Show updated product info
 			if(p.viewproduct() != 0)
-				showcurrentproductinfo(p);
+				showcurrentproductinfo();
 		}
 	}
 	
 	public void deleteproductmenu() {
-		product_management p = new product_management();
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println ("Enter product information");
-		System.out.println ("Product Code        : ");  p.setProductCode(scan.nextLine());		
+		System.out.println ("Product Code        : ");  
+		p.setProductCode(scan.nextLine());		
 		
+		if(p.getDiscontinuedProducts().contains(p.getProductCode())) 
+			System.out.println ("ERROR: Product is discontinued and cannot be deleted."); 
+		
+		
+		else
 		p.deleteproduct();
 	}
 	
+	public void discontinueproductmenu() {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println ("Enter product to be discontinued");
+		System.out.println ("Product Code        : ");  
+		p.setProductCode(scan.nextLine());
+
+
+		if(p.viewproduct() != 0) {
+			
+			if(p.getDiscontinuedProducts().contains(p.getProductCode())) {
+				System.out.println(p.getProductCode() + " is ALREADY DISCONTINUED\n");
+			}
+			else {
+				p.discontinueproduct();
+				System.out.println("Product has been discontinued.");	
+			}
+	
+			
+			showDiscontinuedProducts();
+		}
+
+		
+		else 
+			System.out.println("That product does not exist on the records");
+	}
+	
 	public void viewproductmenu() {
-		product_management p = new product_management();
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println ("Enter product information");
@@ -133,14 +176,14 @@ public class product_management_menu {
 		p.setProductCode(scan.nextLine());
 		
 		if(p.viewproduct() != 0) 
-			showcurrentproductinfo(p);
+			showcurrentproductinfo();
 		
 		else 
 			System.out.println("That product does not exist on the records");
 		
 	}
 	
-	public void showcurrentproductinfo(product_management p) {
+	public void showcurrentproductinfo() {
 		System.out.println ("-------------------------------------------------------------------");
 		System.out.println ("Current Product information");
 		System.out.println ("-------------------------------------------------------------------");
@@ -156,7 +199,7 @@ public class product_management_menu {
 		System.out.println ("MSRP                : " + p.getMSRP());
 	}
 	
-	public void inputProductDetails(product_management p) {
+	public void inputProductDetails() {
 		Scanner scan = new Scanner(System.in);
 		
 
@@ -228,5 +271,17 @@ public class product_management_menu {
 	        }
 		}
 		
+	}
+	
+	public void showDiscontinuedProducts() {
+		System.out.println ("-------------------------------------------------------------------");
+		System.out.println ("Discontinued products");
+		System.out.println ("-------------------------------------------------------------------");
+
+		for(int i = 0; i < p.getDiscontinuedProducts().size(); i++) {
+			System.out.println ("Product Code        : " + p.getDiscontinuedProducts().get(i));
+		}
+		
+
 	}
 }

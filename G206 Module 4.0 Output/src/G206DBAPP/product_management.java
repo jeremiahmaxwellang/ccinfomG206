@@ -7,6 +7,7 @@ package G206DBAPP;
 import java.sql.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 
 public class product_management {
 	private String  productCode;
@@ -18,6 +19,7 @@ public class product_management {
 	private int		quantityInStock;
 	private float	buyPrice;
 	private float	MSRP;
+	private ArrayList<String> discontinuedProducts = new ArrayList<String>();
 	
 	private String connectionString = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234";
 	
@@ -121,7 +123,7 @@ public class product_management {
 	}
 	
 	public void discontinueproduct() {
-		
+		discontinuedProducts.add(productCode);
 	}
 	
 	public int viewproduct() {
@@ -201,6 +203,10 @@ public class product_management {
     public float getMSRP() {
         return MSRP;
     }
+    
+    public ArrayList<String> getDiscontinuedProducts() {
+        return discontinuedProducts;
+    }
 
     //====SETTERS====
     
@@ -239,4 +245,6 @@ public class product_management {
     public void setMSRP(float MSRP) {
         this.MSRP = MSRP;
     }
+    
+    
 }

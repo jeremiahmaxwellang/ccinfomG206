@@ -286,8 +286,8 @@ public class order_transaction {
 			
 			PreparedStatement pstmt = conn.prepareStatement("SELECT od.orderNumber, od.productCode, od.quantityOrdered, p.productName  FROM orderdetails od JOIN products p ON p.productCode = od.productCode WHERE od.orderNumber=?");
 			
+			//Set the WHERE orderNumber = ?
 			pstmt.setInt(1, orderNumber);
-//			pstmt.setString(2, productCode);
 			
 			System.out.println("SQL Statement Prepared, getting records...");
 			
@@ -297,6 +297,7 @@ public class order_transaction {
 			
 			while(rs.next()) {
 				recordcount++;
+//				Displays the order detail (DOES NOT STORE IT)
 				System.out.println   ("\norderNumber       : " + rs.getString(1) 
 									+ "\nproductCode       : " + rs.getString(2) 
 									+ "\nquantityOrdered   : " + rs.getString(3) 

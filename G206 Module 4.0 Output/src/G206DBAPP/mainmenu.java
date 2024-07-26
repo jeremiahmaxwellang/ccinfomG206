@@ -7,6 +7,7 @@ package G206DBAPP;
 import java.util.Scanner;
 
 public class mainmenu {
+	public product_management p = new product_management();
 	public mainmenu() {}
 	
 	public int menu() {
@@ -51,7 +52,7 @@ public class mainmenu {
 		
 		
 		if (menuchoice == 1) {
-			product_management_menu prodmanmenu = new product_management_menu();
+			product_management_menu prodmanmenu = new product_management_menu(p);
 			while(prodmanmenu.menu() != 0) {}
 		}
 		
