@@ -132,6 +132,7 @@ public class product_management {
 			
 			ResultSet rs = pstmt.executeQuery();
 			
+			//Copy record from db
 			while(rs.next()) {
 				recordcount++;
 				productName = rs.getString("productName");
@@ -142,7 +143,7 @@ public class product_management {
 				quantityInStock = rs.getInt("quantityInStock");
 				buyPrice = rs.getFloat("buyPrice");
 				MSRP = rs.getFloat("MSRP");
-				System.out.println("Record was Retrieved");
+				System.out.println("Record of the product " + productCode + " exists\n");
 			}
 
 			

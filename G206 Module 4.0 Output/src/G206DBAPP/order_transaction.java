@@ -1,4 +1,6 @@
 package G206DBAPP;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -31,13 +33,13 @@ public class order_transaction {
 		try {
 			Connection conn;
 			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
-			System.out.println("Connection to DB successful");
+			System.out.println("Connection to DB successful\n");
 			
 			//orders
 			
 			//Generate next orderNumber
 			getMaxOrderNumber();
-			orderNumber++;
+			
 			
 			//Get date today
 			getCurrentDatetime();
@@ -69,7 +71,8 @@ public class order_transaction {
 		try {
 			Connection conn;
 			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
-			System.out.println("Connection to DB successful");
+			System.out.println("Connected; Adding product " + or.getProductCode() + " to order...\n");
+			
 
 			//orderdetails
 			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO orderdetails VALUES (?, ?, ?, ?, ?)");
@@ -90,23 +93,111 @@ public class order_transaction {
 		}
 	}
 	
-	 public int getMaxOrderNumber() {
+	public int updateOrder() {
+		try {
+			Connection conn;
+			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			System.out.println("Connection to DB successful");
+			
+			PreparedStatement pstmt = conn.prepareStatement("UPDATE orders SET orderDate=?, requiredDate=?, shippedDate=?, status=?, comments=?, customerNumber=? WHERE orderNumber=?");
+			pstmt.setInt(7, orderNumber);
+			pstmt.setTimestamp(1, orderDate);
+			pstmt.setTimestamp(2, requiredDate);
+			pstmt.setTimestamp(3, shippedDate);
+			
+			pstmt.setString(4, status);
+			pstmt.setString(5, comments);
+			pstmt.setInt   (6, customerNumber);
+			
+			System.out.println("SQL Statement Prepared");
+			pstmt.executeUpdate();
+			System.out.println("Record was updated");
+			pstmt.close();
+			conn.close();
+			return 1;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return 0;
+		}
+	}
+	
+	public void deleteOrderedProduct(orderdetails or) {
+		try {
+			Connection conn;
+			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			System.out.println("Connection to DB successful");
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM orderDetails WHERE orderNumber=? AND productCode=?");
+			pstmt.setInt(1, or.getOrderNumber());
+			pstmt.setString(2, or.getProductCode());
+			System.out.println("SQL Statement Prepared");
+			
+			pstmt.executeUpdate();
+			System.out.println("Record was deleted");
+			pstmt.close();
+			conn.close();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
+	public int viewOrder() {
+		int recordcount = 0;
+		try {
+			Connection conn;
+			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			System.out.println("Connection to DB successful");
+			
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM orders WHERE orderNumber=?");
+			pstmt.setInt(1, orderNumber);
+			
+			System.out.println("SQL Statement Prepared");
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			//Copy record from db
+			while(rs.next()) {
+				recordcount++;
+				orderDate = rs.getTimestamp("orderDate");
+				requiredDate = rs.getTimestamp("requiredDate");
+				shippedDate = rs.getTimestamp("shippedDate");
+				status = rs.getString("status");
+				comments = rs.getString("comments");
+				customerNumber = rs.getInt("customerNumber");
+				System.out.println("Record of Order #" + orderNumber + " exists\n");
+			}
+
+			
+			pstmt.close();
+			conn.close();
+			return recordcount;
+		}
+		
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			return 0;
+		}
+	}
+	
+	public int getMaxOrderNumber() {
 			int recordcount = 0;
 			try {
 				Connection conn;
 				conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
-				System.out.println("Connection to DB successful");
+				System.out.println("Connected; Generating Order...");
 				
 				PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(orderNumber) FROM orders");
-				System.out.println("SQL Statement Prepared MAX(orderNumber)");
+				System.out.println("SQL Statement Prepared");
 				
 				ResultSet rs = pstmt.executeQuery();
 				
 				while(rs.next()) {
 					recordcount++;
 					orderNumber = rs.getInt("MAX(orderNumber)");
+					orderNumber++;
 
-					System.out.println("Highest Order Number: " + orderNumber + "\n\n");
+					System.out.println("Your Order Number: " + orderNumber + "\n\n");
 				}
 
 				
@@ -124,7 +215,7 @@ public class order_transaction {
 
 
     
-	 public int getCurrentDatetime() {
+	public int getCurrentDatetime() {
 			int recordcount = 0;
 			try {
 				Connection conn;
