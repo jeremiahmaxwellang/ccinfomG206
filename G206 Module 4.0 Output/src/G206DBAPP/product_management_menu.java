@@ -77,6 +77,9 @@ public class product_management_menu {
 		inputProductDetails(p);
 
 		p.addproduct();
+		
+		if(p.viewproduct() != 0)
+			showcurrentproductinfo(p);
 	}
 	
 
@@ -100,6 +103,9 @@ public class product_management_menu {
 			inputProductDetails(p);
 			
 			p.updateproduct();
+			
+			if(p.viewproduct() != 0)
+				showcurrentproductinfo(p);
 		}
 	}
 	
