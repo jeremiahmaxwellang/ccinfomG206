@@ -56,7 +56,7 @@ public class order_transaction_menu {
 		} 
 		
 		else if (menuchoice == 3) {			
-			
+			updateOrderedProductMenu();
 		} 
 		
 		else if (menuchoice == 4) {			
@@ -132,6 +132,72 @@ public class order_transaction_menu {
 	
 		}
 
+	}
+	
+	
+	public void updateOrderedProductMenu() {
+//		1. Enter Order Number
+//		2. Display Ordered Products
+//		3. Enter Product Code
+//		4. Check if Product Code is in Order
+//		5. Update
+		
+		order_transaction o = new order_transaction();
+		orderdetails od;
+		int orderNumber = 0;
+		String productCode = "";
+		
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println ("Enter order information");
+		System.out.println ("-------------------------------------------------------------------");
+		System.out.println ("Order Number              : ");
+
+		try {
+//			Get order number and check if valid
+        	orderNumber = Integer.parseInt(scan.nextLine());
+        	
+        	o.setOrderNumber(orderNumber);
+        	
+        	if(o.viewOrder() != 0) {
+        		o.viewMultipleOrderDetails();
+            	System.out.println ("\n\nProduct Code to Update    : ");
+            	productCode = scan.nextLine();
+            	
+        		od = new orderdetails(orderNumber, productCode);
+        		
+            	System.out.println ("\n\nNew product code    : ");
+            	productCode = scan.nextLine();
+            	
+		        try {
+		        	System.out.println ("\n\nNew quantity ordered    : ");
+		        	od.setQuantityOrdered(Integer.parseInt(scan.nextLine()));
+
+		        } catch (NumberFormatException e) {
+		        	od.setQuantityOrdered(1);
+		            System.out.println("Invalid quantity. Setting quantity to 1 by default\n\n");
+		            
+		        }
+            	
+        		o.updateOrderedProduct(od, productCode);
+
+            		
+//            	Show all products ordered
+        		System.out.println ("-------------------------------------------------------------------");
+        		System.out.println ("Current Ordered Products");
+        		System.out.println ("-------------------------------------------------------------------");
+        		o.viewMultipleOrderDetails();
+        	}
+        	else System.out.println("Invalid Order Number\n\n");
+        	
+
+            
+        } catch (NumberFormatException e) {
+            System.out.println("Order Number must be AN INTEGER\n\n");
+            
+        }
+
+		
 	}
 	
 	public void deleteOrderedProductMenu() {

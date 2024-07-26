@@ -124,23 +124,27 @@ public class order_transaction {
 		}
 	}
 
-	public void updateOrderedProduct(orderdetails or) {
+	public void updateOrderedProduct(orderdetails od, String newProductCode) {
 		try {
 			Connection conn;
 			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
 			System.out.println("Connection to DB successful");
-			PreparedStatement pstmt = conn.prepareStatement("UPDATE orderdetails SET productCode=?, quantityOrdered=?, productScale=?, productVendor=?, productDescription=?, quantityInStock=?, buyPrice=?, MSRP=? WHERE productCode=?");
-			pstmt.setInt(1, or.getOrderNumber());
-			pstmt.setString(2, or.getProductCode());
-			System.out.println("SQL Statement Prepared");
+			PreparedStatement pstmt = conn.prepareStatement("UPDATE orderdetails SET productCode=?, quantityOrdered=? WHERE orderNumber=? AND productCode=?");
+
+			pstmt.setInt(3, od.getOrderNumber());
+			//Old product code
+			pstmt.setString(4, od.getProductCode());
+			
+			//Updated product code
+			pstmt.setString(1, newProductCode);
+			pstmt.setInt(2, od.getQuantityOrdered());
 			
 			pstmt.executeUpdate();
-			System.out.println("Record was deleted");
+			
 			pstmt.close();
 			conn.close();
 
 		} catch (Exception e) {
-			System.out.println("Could not delete, product is not part of order.");
 			System.out.println(e.getMessage());
 		}
 	}
