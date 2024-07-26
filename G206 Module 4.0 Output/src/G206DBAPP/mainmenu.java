@@ -56,10 +56,16 @@ public class mainmenu {
 			while(prodmanmenu.menu() != 0) {}
 		}
 		
+		
 //		Employee Management
-		if (menuchoice == 3) {
+		else if (menuchoice == 3) {
 			EmployeeManager e = new EmployeeManager();
 			while(e.menu() != 6) {}
+		}
+		
+//		Office Management - MEMBER 04 NOT CONTRIBUTING
+		else if (menuchoice == 4) {
+			System.out.println("Eiden Bryce Tieng did NOT contribute to the DB App");
 		}
 		
 //		Order Processing
@@ -72,6 +78,11 @@ public class mainmenu {
 		else if (menuchoice == 7) {
 			SalesReportGenerator report1 = new SalesReportGenerator();
 			report1.generateSalesReport1();
+		}
+		
+//		Report 2
+		else if (menuchoice == 8) {
+			System.out.println("Eiden Bryce Tieng did NOT contribute to the DB App");
 		}
 
 //		scan.close();
