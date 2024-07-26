@@ -1,4 +1,9 @@
 package G206DBAPP;
+
+/**
+ * GROUP MEMBER 01: JEREMIAH MAXWELL ANG
+ */
+
 import java.sql.*;
 import java.util.ArrayList;
 

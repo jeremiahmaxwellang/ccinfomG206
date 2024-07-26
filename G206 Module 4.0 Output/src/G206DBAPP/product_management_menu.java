@@ -1,5 +1,9 @@
 package G206DBAPP;
 
+/**
+ * GROUP MEMBER 01: JEREMIAH MAXWELL ANG
+ */
+
 import java.util.Scanner;
 
 public class product_management_menu {
@@ -104,6 +108,7 @@ public class product_management_menu {
 			
 			p.updateproduct();
 			
+			//Show updated product info
 			if(p.viewproduct() != 0)
 				showcurrentproductinfo(p);
 		}

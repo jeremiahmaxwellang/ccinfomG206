@@ -1,5 +1,9 @@
 package G206DBAPP;
 
+/**
+ * GROUP MEMBER 01: JEREMIAH MAXWELL ANG
+ */
+
 import java.util.Scanner;
 
 public class mainmenu {

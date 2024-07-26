@@ -1,5 +1,9 @@
 package G206DBAPP;
 
+/**
+ * GROUP MEMBER 01: JEREMIAH MAXWELL ANG
+ */
+
 import java.sql.Timestamp;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -250,9 +254,20 @@ public class order_transaction_menu {
         	continueOrdering = choice;
 		}
 			
+		validInput = 0;
+		while(validInput == 0)	{
+			System.out.println ("When do you require your order to be shipped?        : ");  
+			String requiredDateInput = scan.nextLine();
 			
-//		System.out.println ("When do you require your order to be shipped?        : ");  
-		o.setRequiredDate(new java.sql.Timestamp(System.currentTimeMillis())); //temp required date
+			try {
+				o.setRequiredDate(Timestamp.valueOf(requiredDateInput));
+				validInput = 1;
+			}
+			catch(Exception e) {
+				System.out.println("INPUT A VALID REQUIRED DATE\n");
+			}
+		}
+
 }
 
 

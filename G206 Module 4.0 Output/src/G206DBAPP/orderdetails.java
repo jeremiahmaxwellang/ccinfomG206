@@ -1,5 +1,9 @@
 package G206DBAPP;
 
+/**
+ * GROUP MEMBER 01: JEREMIAH MAXWELL ANG
+ */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -30,7 +34,7 @@ public class orderdetails {
 		setOrderLineNumber((short) 1);
 	}
     
-    //move to order_transaction
+
 	public int viewOrderDetails() {
 		int recordcount = 0;
 		try {
@@ -38,7 +42,7 @@ public class orderdetails {
 			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
 			System.out.println("Connection to DB successful");
 			
-			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM orderDetails WHERE orderNumber=? AND productCode=?");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT FROM orderDetails WHERE orderNumber=? AND productCode=?");
 			pstmt.setInt(1, orderNumber);
 			pstmt.setString(2, productCode);
 			

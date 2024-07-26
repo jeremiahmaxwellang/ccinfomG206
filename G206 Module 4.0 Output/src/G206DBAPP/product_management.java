@@ -1,5 +1,9 @@
 package G206DBAPP;
 
+/**
+ * GROUP MEMBER 01: JEREMIAH MAXWELL ANG
+ */
+
 import java.sql.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
