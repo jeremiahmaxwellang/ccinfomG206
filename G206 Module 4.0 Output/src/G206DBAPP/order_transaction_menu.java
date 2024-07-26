@@ -108,6 +108,14 @@ public class order_transaction_menu {
 					System.out.println ("-------------------------------------------------------------------");
 					inputOrder(o);
 					
+					o.updateOrder();
+
+					o.viewOrder();
+					
+					System.out.println ("Updated order information");
+					System.out.println ("-------------------------------------------------------------------");
+					showCurrentOrder(o);
+					
 				}
 				
 				else System.out.println("\nERROR: Cannot update. Order is not In Process.\n\n");
@@ -429,24 +437,6 @@ public class order_transaction_menu {
 	        
 			}
 		}
-
-		
-		if (menuchoice == 1) {
-			createOrderMenu();
-		} 
-		
-		else if (menuchoice == 2) {			
-			updateOrderMenu();
-		} 
-		
-		else if (menuchoice == 3) {			
-		
-		} 
-		
-		else if (menuchoice == 4) {			
-			deleteOrderedProductMenu();
-		} 
-		
 
 		return menuchoice;
 	}
