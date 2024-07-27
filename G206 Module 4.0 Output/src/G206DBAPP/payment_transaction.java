@@ -1,5 +1,8 @@
 package G206DBAPP;
 
+/**
+ * MEMBER 02: EULYSIS DIMAILIG
+ */
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.*;
@@ -11,10 +14,10 @@ public class payment_transaction {
 	float amount;
 	
 //	Cloud connection
-//	private String connectionString = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234";
+	private String connectionString = "jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234";
 		
 //	Local connection test
-		private String connectionString = "jdbc:mysql://localhost:3306/dbsales?useTimezone=true&serverTimezone=UTC&user=root&password=CCINFOMS12";
+		// private String connectionString = "jdbc:mysql://localhost:3306/dbsales?useTimezone=true&serverTimezone=UTC&user=root&password=CCINFOMS12";
 	
 
 	payment_transaction(){
@@ -121,6 +124,29 @@ public class payment_transaction {
 		}
 		
 		catch (Exception e) {
+			System.out.println(e.getMessage());
+			return 0;
+		}
+	}
+	
+	public int get_payment() {
+		try {
+			Connection conn;
+			conn = DriverManager.getConnection("jdbc:mysql://mysql-176128-0.cloudclusters.net:10107/dbsales?useTimezone=true&serverTimezone=UTC&user=CCINFOM_G206&password=DLSU1234");
+			System.out.println("Connection to DB successful");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM payments WHERE customerNumber = ? AND checkNumber = ?");
+			pstmt.setInt   (1, customerNumber);
+			pstmt.setString  (2, checkNumber);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				paymentDate = rs.getTimestamp("paymentDate");
+				amount = rs.getFloat("amount");
+
+			}
+			pstmt.close();
+			conn.close();
+			return 1;
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return 0;
 		}

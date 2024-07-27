@@ -56,6 +56,12 @@ public class mainmenu {
 			while(prodmanmenu.menu() != 0) {}
 		}
 		
+//		Customer Management
+		else if (menuchoice == 2) {
+			customer_management_menu c = new customer_management_menu();
+			c.menu();
+//			while(c.menu() != 0) {}
+		}
 		
 //		Employee Management
 		else if (menuchoice == 3) {
@@ -72,6 +78,12 @@ public class mainmenu {
 		else if (menuchoice == 5) {
 			order_transaction_menu ordermenu = new order_transaction_menu();
 			while(ordermenu.menu() != 0) {}
+		}
+		
+//		Payt Processing
+		else if (menuchoice == 6) {
+			payment_transaction_menu ptm = new payment_transaction_menu();
+			ptm.menu();
 		}
 		
 //		Report 1
