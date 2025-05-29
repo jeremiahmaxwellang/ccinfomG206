@@ -260,42 +260,6 @@
             }
           },
           {
-            "shape": "trust-boundary-curve",
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Boundary",
-              "name": "Trust Boundary",
-              "description": "",
-              "isTrustBoundary": true,
-              "hasOpenThreats": false
-            },
-            "labels": [
-              "Trust Boundary"
-            ],
-            "id": "1d9b0027-7f11-43d1-8b6d-bfea1ba3ff8e",
-            "source": {
-              "x": 220,
-              "y": 90
-            },
-            "target": {
-              "x": 750,
-              "y": 100
-            },
-            "vertices": [
-              {
-                "x": 480,
-                "y": 160
-              },
-              {
-                "x": 670,
-                "y": 130
-              }
-            ]
-          },
-          {
             "shape": "flow",
             "attrs": {
               "line": {
@@ -545,6 +509,91 @@
             ]
           },
           {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "labels": [
+              "Trust Boundary"
+            ],
+            "id": "1d9b0027-7f11-43d1-8b6d-bfea1ba3ff8e",
+            "source": {
+              "x": 220,
+              "y": 90
+            },
+            "target": {
+              "x": 880,
+              "y": 140
+            },
+            "vertices": [
+              {
+                "x": 480,
+                "y": 160
+              },
+              {
+                "x": 670,
+                "y": 180
+              },
+              {
+                "x": 710,
+                "y": 180
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "f7042182-01ad-4ffa-afa5-dad56c8c1683",
+            "source": {
+              "x": 230,
+              "y": 380
+            },
+            "target": {
+              "cell": "07f9b598-0a76-4c49-a485-efe733c39978",
+              "port": "f53a7358-bd80-45d9-b3ec-95bd2c7bb77e"
+            },
+            "vertices": []
+          },
+          {
             "position": {
               "x": 430,
               "y": 20
@@ -555,7 +604,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Authorization"
+                "text": "Authorization\nProvider"
               },
               "body": {
                 "stroke": "#333333",
@@ -651,7 +700,7 @@
             "id": "3e303955-8fb2-42a7-905c-778f617eb026",
             "data": {
               "type": "tm.Process",
-              "name": "Authorization",
+              "name": "Authorization\nProvider",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -674,7 +723,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Browser"
+                "text": "Browser Client"
               },
               "body": {
                 "stroke": "#333333",
@@ -770,7 +819,7 @@
             "zIndex": 12,
             "data": {
               "type": "tm.Actor",
-              "name": "Browser",
+              "name": "Browser Client",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
