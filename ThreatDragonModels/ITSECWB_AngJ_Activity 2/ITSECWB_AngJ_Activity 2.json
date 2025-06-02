@@ -757,7 +757,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Success=",
+              "name": "Success=1",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -769,7 +769,7 @@
               "threats": []
             },
             "labels": [
-              "Success="
+              "Success=1"
             ],
             "id": "95896b18-53fd-4a78-9d8c-72a934404b1a",
             "source": {
