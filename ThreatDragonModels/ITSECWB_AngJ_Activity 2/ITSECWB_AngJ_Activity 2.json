@@ -147,7 +147,7 @@
             },
             "size": {
               "width": 140,
-              "height": 120
+              "height": 130
             },
             "attrs": {
               "text": {
@@ -568,7 +568,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Data Flow",
+              "name": "User is authenticated",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -580,18 +580,161 @@
               "threats": []
             },
             "labels": [
-              "Data Flow"
+              "User is authenticated"
             ],
-            "id": "f7042182-01ad-4ffa-afa5-dad56c8c1683",
+            "id": "0abb9ab8-559b-45b1-aec0-806d9c009bef",
             "source": {
-              "x": 230,
-              "y": 380
+              "cell": "07f9b598-0a76-4c49-a485-efe733c39978",
+              "port": "f53a7358-bd80-45d9-b3ec-95bd2c7bb77e"
+            },
+            "target": {
+              "cell": "55c90c82-d822-4ce8-87c2-72d9ed9f25fa",
+              "port": "f881f4a0-ddf7-4e1b-9a7a-71e753b9b9d3"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "User sends user credentials",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "User sends user credentials"
+            ],
+            "id": "dd9df38d-9143-439c-857e-97c6f51ced5a",
+            "source": {
+              "x": 164,
+              "y": 350
             },
             "target": {
               "cell": "07f9b598-0a76-4c49-a485-efe733c39978",
               "port": "f53a7358-bd80-45d9-b3ec-95bd2c7bb77e"
             },
-            "vertices": []
+            "vertices": [
+              {
+                "x": 320,
+                "y": 350
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Feedback Comments Saved",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Feedback Comments Saved"
+            ],
+            "id": "ee11f393-f83c-4a69-8327-25069aaf2cff",
+            "source": {
+              "x": 447,
+              "y": 440
+            },
+            "target": {
+              "x": 170,
+              "y": 430
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Insert feedback comments",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Insert feedback comments"
+            ],
+            "id": "ee96738d-544a-4721-b42e-bfec55abdbfc",
+            "source": {
+              "x": 164,
+              "y": 390
+            },
+            "target": {
+              "cell": "07f9b598-0a76-4c49-a485-efe733c39978",
+              "port": "f53a7358-bd80-45d9-b3ec-95bd2c7bb77e"
+            },
+            "vertices": [
+              {
+                "x": 290,
+                "y": 410
+              }
+            ]
           },
           {
             "position": {
@@ -714,12 +857,12 @@
           },
           {
             "position": {
-              "x": 113.75,
-              "y": 350
+              "x": 3.7499999999998863,
+              "y": 330
             },
             "size": {
-              "width": 112.5,
-              "height": 60
+              "width": 160,
+              "height": 110
             },
             "attrs": {
               "text": {
@@ -733,6 +876,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 12,
             "ports": {
               "groups": {
                 "top": {
@@ -816,7 +960,6 @@
               ]
             },
             "id": "55c90c82-d822-4ce8-87c2-72d9ed9f25fa",
-            "zIndex": 12,
             "data": {
               "type": "tm.Actor",
               "name": "Browser Client",
@@ -849,6 +992,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 13,
             "ports": {
               "groups": {
                 "top": {
@@ -932,7 +1076,6 @@
               ]
             },
             "id": "6cf85eec-b90a-4ed4-b082-ffdbd4e30dd2",
-            "zIndex": 13,
             "data": {
               "type": "tm.Process",
               "name": "LDAP",
