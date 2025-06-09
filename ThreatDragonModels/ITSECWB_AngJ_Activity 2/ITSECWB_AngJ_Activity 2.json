@@ -382,6 +382,19 @@
                   "new": false,
                   "number": 20,
                   "score": ""
+                },
+                {
+                  "id": "0369daf2-6acc-476d-9b7c-2361043ebf1d",
+                  "title": "Web App may be used to send attacker's chosen data into Browser Client ",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": " An attacker may pass data into the browser client in order to choose the flow of program execution within the browser client to the attacker's choosing",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
@@ -389,7 +402,7 @@
                 "tampering": 1,
                 "repudiation": 1,
                 "informationDisclosure": 1,
-                "denialOfService": 1,
+                "denialOfService": 3,
                 "elevationOfPrivilege": 1
               }
             }
@@ -2642,6 +2655,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "",
-    "threatTop": 20
+    "threatTop": 21
   }
 }
