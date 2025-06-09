@@ -330,13 +330,26 @@
                   "new": false,
                   "number": 12,
                   "score": ""
+                },
+                {
+                  "id": "22ecd50a-6ddb-4f93-ba91-5b87563fdc61",
+                  "title": "Web App's Feedback Comments May be Sniffed",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Possibility of attackers performing data sniffing on web app's feedback comments to get private information",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
                 "spoofing": 0,
                 "tampering": 1,
                 "repudiation": 1,
-                "informationDisclosure": 0,
+                "informationDisclosure": 1,
                 "denialOfService": 0,
                 "elevationOfPrivilege": 0
               }
@@ -928,8 +941,8 @@
                 "text": "Authorization\nProvider"
               },
               "body": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
             },
@@ -1025,26 +1038,12 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": true,
+              "hasOpenThreats": false,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": [
-                {
-                  "id": "e0016f52-cf31-4914-9cf7-4b6a5f394078",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "TBD",
-                  "type": "Spoofing",
-                  "description": "Provide a description for this threat",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
-                  "modelType": "STRIDE",
-                  "new": true,
-                  "number": 13,
-                  "score": ""
-                }
-              ]
+              "threats": []
             }
           },
           {
@@ -1323,13 +1322,26 @@
                   "new": false,
                   "number": 11,
                   "score": ""
+                },
+                {
+                  "id": "4b247c83-0b3c-4d2e-bb69-aef8a52f6712",
+                  "title": "LDAP Improper Data Collection",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Improper data protection of LDAP can allow an attacker to read information not intended for disclosure",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
                 "spoofing": 0,
                 "tampering": 1,
                 "repudiation": 1,
-                "informationDisclosure": 0,
+                "informationDisclosure": 1,
                 "denialOfService": 0,
                 "elevationOfPrivilege": 0
               }
@@ -2591,6 +2603,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "",
-    "threatTop": 14
+    "threatTop": 16
   }
 }
