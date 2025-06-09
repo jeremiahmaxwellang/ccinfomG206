@@ -356,6 +356,32 @@
                   "new": false,
                   "number": 15,
                   "score": ""
+                },
+                {
+                  "id": "953d6f69-347e-44d7-b693-5c02c2786e0b",
+                  "title": "Browser Client denied access to Web App",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "The browser client crashes, halts, stops or runs slowly, in all cases violating an availability metric.",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": ""
+                },
+                {
+                  "id": "2e69460e-1454-4700-8676-1a385f5b1c58",
+                  "title": "Web App vulnerable to attackers getting additional privilege",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "The browser client may be able to impersonate the context of the web application in order to gain additional privilege.",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
@@ -363,8 +389,8 @@
                 "tampering": 1,
                 "repudiation": 1,
                 "informationDisclosure": 1,
-                "denialOfService": 0,
-                "elevationOfPrivilege": 0
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
               }
             }
           },
@@ -1184,19 +1210,6 @@
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 14,
-                  "score": ""
-                },
-                {
-                  "id": "af42998e-7413-4f25-970e-a8c77a291903",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "TBD",
-                  "type": "Repudiation",
-                  "description": "Provide a description for this threat",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
-                  "modelType": "STRIDE",
-                  "new": true,
-                  "number": 17,
                   "score": ""
                 }
               ],
@@ -2629,6 +2642,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "",
-    "threatTop": 18
+    "threatTop": 20
   }
 }
