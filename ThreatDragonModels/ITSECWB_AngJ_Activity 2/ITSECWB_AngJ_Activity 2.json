@@ -20,7 +20,7 @@
           {
             "position": {
               "x": 880,
-              "y": 360
+              "y": 345
             },
             "size": {
               "width": 120,
@@ -152,11 +152,24 @@
                   "new": false,
                   "number": 2,
                   "score": ""
+                },
+                {
+                  "id": "5dbedc93-dab7-4609-97bb-4b8a067f77ae",
+                  "title": "Database Cannot Track Written Data",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "SQL Database claims it did not write data received from the other side of the trust boundary",
+                  "mitigation": "Logging to record the source, time, and summary of the received data",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
                 "tampering": 1,
-                "repudiation": 0,
+                "repudiation": 1,
                 "informationDisclosure": 0,
                 "denialOfService": 0
               }
@@ -1102,15 +1115,6 @@
               "hasOpenThreats": false,
               "providesAuthentication": false,
               "threats": []
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -1259,6 +1263,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 4
+    "threatTop": 6
   }
 }
