@@ -178,13 +178,26 @@
                   "new": false,
                   "number": 8,
                   "score": ""
+                },
+                {
+                  "id": "3f41f378-8162-4697-a8c2-9feec134d4dd",
+                  "title": "SQL Database Denial of Access",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "An external agent prevents access to the SQL Database Server on the other side of the trust boundary.",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
                 "tampering": 4,
                 "repudiation": 2,
                 "informationDisclosure": 0,
-                "denialOfService": 0
+                "denialOfService": 1
               }
             }
           },
@@ -1171,6 +1184,19 @@
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 14,
+                  "score": ""
+                },
+                {
+                  "id": "af42998e-7413-4f25-970e-a8c77a291903",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": true,
+                  "number": 17,
                   "score": ""
                 }
               ],
@@ -2603,6 +2629,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "",
-    "threatTop": 16
+    "threatTop": 18
   }
 }
