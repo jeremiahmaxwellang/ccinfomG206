@@ -142,7 +142,7 @@
               "threats": [
                 {
                   "id": "c720a9c2-e881-4951-93c8-9a21f3ac612b",
-                  "title": "SQL Injection",
+                  "title": "Database Vulnerable to SQL Injection",
                   "status": "Open",
                   "severity": "TBD",
                   "type": "Tampering",
@@ -168,7 +168,7 @@
                 },
                 {
                   "id": "08eef808-8e5f-4198-a5e1-64564e458eda",
-                  "title": "Feedback Comments may be tampered",
+                  "title": "Database's Saved Feedback Comments may be tampered",
                   "status": "Open",
                   "severity": "TBD",
                   "type": "Tampering",
@@ -181,7 +181,7 @@
                 }
               ],
               "threatFrequency": {
-                "tampering": 2,
+                "tampering": 4,
                 "repudiation": 2,
                 "informationDisclosure": 0,
                 "denialOfService": 0
@@ -306,19 +306,6 @@
               "privilegeLevel": "",
               "threats": [
                 {
-                  "id": "df6f2de3-bcb0-47a6-810d-e3f74518f0b6",
-                  "title": "Website Spoofing",
-                  "status": "Open",
-                  "severity": "TBD",
-                  "type": "Spoofing",
-                  "description": "Web application may be spoofed by an attacker",
-                  "mitigation": "",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 1,
-                  "score": ""
-                },
-                {
                   "id": "cb9649dc-e6b5-4b01-b290-c56b11abd0e6",
                   "title": "Web App Feedback comments may be tampered",
                   "status": "Open",
@@ -346,7 +333,7 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 0,
                 "tampering": 1,
                 "repudiation": 1,
                 "informationDisclosure": 0,
@@ -1176,7 +1163,7 @@
               "threats": [
                 {
                   "id": "5b6e2f37-e3cc-475e-a81f-77e60c75c8cc",
-                  "title": "Vulnerable to Website Spoofing",
+                  "title": "Browser Client Vulnerable to Website Spoofing",
                   "status": "Open",
                   "severity": "TBD",
                   "type": "Spoofing",
@@ -1189,7 +1176,7 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 2,
                 "repudiation": 0
               }
             }
