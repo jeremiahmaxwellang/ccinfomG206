@@ -1263,9 +1263,9 @@
       {
         "id": 1,
         "title": "ITSECWB_AngJ_Activity 3 Diagram",
-        "diagramType": "Generic",
-        "placeholder": "New generic diagram description",
-        "thumbnail": "./public/content/images/thumbnail.jpg",
+        "diagramType": "PLOT4ai",
+        "placeholder": "New PLOT4ai diagram description",
+        "thumbnail": "./public/content/images/thumbnail.plot4ai.jpg",
         "version": "2.4.1",
         "cells": [
           {
@@ -2514,6 +2514,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "",
-    "threatTop": 6
+    "threatTop": 7
   }
 }
